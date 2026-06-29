@@ -1,0 +1,39 @@
+/* Skeleton styles. Stage 04 imports real values from shared/constants.md. */
+:root {
+  --space-md: 16px;
+  --max-width: 1200px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  border-bottom: 1px solid #e5e5e5;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-md);
+}
+
+.tab-bar {
+  display: flex;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}

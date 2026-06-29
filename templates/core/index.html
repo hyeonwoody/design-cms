@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="tab-bar" role="tablist">
+  {% for tab in tabs %}
+    <button class="tab" role="tab" data-tab="{{ tab.slug }}">{{ tab.label }}</button>
+  {% endfor %}
+</nav>
+
+<section class="tab-panels">
+  {% for tab in tabs %}
+    <article class="tab-panel" id="panel-{{ tab.slug }}" hidden>
+      <h2>{{ tab.label }}</h2>
+      <p>Skeleton placeholder. Stage 04 fills this tab with live data from
+        <code>/api/{{ tab.slug }}/</code>.</p>
+    </article>
+  {% endfor %}
+</section>
+{% endblock %}

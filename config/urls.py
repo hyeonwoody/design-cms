@@ -17,13 +17,24 @@ from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-# Register DRF viewsets here as the catalog/library/compat apps gain models.
+from apps.catalog.viewsets import FigmaImportView, PaletteViewSet, TokenViewSet
+from apps.compat.viewsets import CompatibilityViewSet
+from apps.core.viewsets import ReferenceViewSet
+from apps.library.viewsets import ComponentViewSet, ScenarioViewSet
+
 router = DefaultRouter()
+router.register("palettes", PaletteViewSet, basename="palette")
+router.register("tokens", TokenViewSet, basename="token")
+router.register("components", ComponentViewSet, basename="component")
+router.register("scenarios", ScenarioViewSet, basename="scenario")
+router.register("compatibility", CompatibilityViewSet, basename="compatibility")
+router.register("references", ReferenceViewSet, basename="reference")
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path("api/figma/import/", FigmaImportView.as_view(), name="figma-import"),
     path("api/", include(router.urls)),
     path("", include("apps.core.urls")),
 ]

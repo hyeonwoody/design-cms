@@ -1,19 +1,31 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <nav class="tab-bar" role="tablist">
   {% for tab in tabs %}
-    <button class="tab" role="tab" data-tab="{{ tab.slug }}">{{ tab.label }}</button>
+    <button class="tab" role="tab" data-tab="{{ tab.slug }}"
+            aria-controls="panel-{{ tab.slug }}">{{ tab.label }}</button>
   {% endfor %}
 </nav>
 
 <section class="tab-panels">
   {% for tab in tabs %}
-    <article class="tab-panel" id="panel-{{ tab.slug }}" hidden>
+    <article class="tab-panel" id="panel-{{ tab.slug }}"
+             data-slug="{{ tab.slug }}" data-endpoint="{{ tab.endpoint }}" hidden>
       <h2>{{ tab.label }}</h2>
-      <p>Skeleton placeholder. Stage 04 fills this tab with live data from
-        <code>/api/{{ tab.slug }}/</code>.</p>
+      <div class="tab-body"><p class="loading">Loading...</p></div>
     </article>
   {% endfor %}
 </section>
+
+{{ tabs|json_script:"tabs-data" }}
+<script>
+  window.DESIGN_CMS = {
+    canEditPalettes: {{ can_edit_palettes|yesno:"true,false" }},
+    canEditTokens: {{ can_edit_tokens|yesno:"true,false" }},
+    csrfToken: "{{ csrf_token }}"
+  };
+</script>
+<script src="{% static 'js/app.js' %}" defer></script>
 {% endblock %}

@@ -37,3 +37,79 @@ main {
   background: #fff;
   cursor: pointer;
 }
+
+.tab.active {
+  border-bottom: 2px solid #2563eb;
+  font-weight: 600;
+}
+
+/* Palettes tab */
+.palette-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: var(--space-md) 0;
+}
+
+.palette-chip {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.palette-chip.active {
+  border-color: #2563eb;
+  font-weight: 600;
+}
+
+/* Live token preview: themed entirely by CSS variables set from the active palette */
+.palette-preview {
+  --color-background: #fff;
+  --color-foreground: #111;
+  --color-muted: #888;
+  --color-card: #f5f5f5;
+  --color-border: #e5e5e5;
+  --color-accent: #2563eb;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.pp-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-md);
+}
+
+.pp-title { font-size: 18px; font-weight: 600; }
+.pp-muted { color: var(--color-muted); margin: 4px 0 12px; }
+
+.pp-accent {
+  background: var(--color-accent);
+  color: var(--color-background);
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.token-table { border-collapse: collapse; width: 100%; max-width: 480px; }
+.token-table td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+.token-table input { width: 110px; font-family: monospace; }
+.token-table input.saved { outline: 2px solid #10b981; }
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 8px;
+  vertical-align: middle;
+}

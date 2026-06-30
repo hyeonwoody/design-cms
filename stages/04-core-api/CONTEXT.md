@@ -42,4 +42,4 @@ CMS, and Figma token import.
 
 | Artifact | Location | Format |
 |----------|----------|--------|
-| Working Django app | `output/` | MVT templates, DRF API, Admin CMS, Figma import source tree |
+| Working Django app | `../../` | MVT templates, DRF API, Admin CMS, Figma import source tree |

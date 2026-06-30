@@ -24,11 +24,30 @@ A single design value belonging to a palette.
 | key | Token name (e.g. `color.primary`, `space.md`) |
 | value | Token value (hex, size, etc.) |
 
+## Color token convention
+
+Modeled on the K-Design POC (https://k-design-studio.netlify.app/poc/design). Each
+palette defines the same six color tokens, so swapping palettes re-themes the UI
+instantly (the front end applies them as CSS variables):
+
+| Token key | Role |
+|-----------|------|
+| `color.background` | Primary surface |
+| `color.foreground` | Primary text |
+| `color.muted` | Secondary text / borders |
+| `color.card` | Elevated surface |
+| `color.border` | Divider color |
+| `color.accent` | Interactive highlight |
+
+The reference palettes are seeded by `python manage.py seed_palettes` (see the command
+for the current set) as theme-matched starting points to refine. Spacing is the fixed
+4px scale in `shared/constants.md`, not a per-palette token.
+
 ## Source of values
 
-The starting token set comes from `{{PALETTE_SET}}`, imported from Figma file
-`{{FIGMA_FILE_KEY}}`. See `stages/04-core-api/references/figma-tokens-api.md` for the
-import mapping.
+The starting token set is seeded from the nine reference palettes above, and can also
+be imported from Figma file `{{FIGMA_FILE_KEY}}`. See
+`stages/04-core-api/references/figma-tokens-api.md` for the import mapping.
 
 ## Accessibility
 

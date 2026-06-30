@@ -43,14 +43,20 @@ workspace that guides the build. Start at `CLAUDE.md`.
 ## Run it locally
 
 ```bash
+docker-compose up -d db          # PostgreSQL in Docker (creates the design_cms DB)
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env            # then set SECRET_KEY and DATABASE_URL
-createdb design_cms             # PostgreSQL must be running
+cp .env.example .env             # defaults already point at the Docker DB
 python manage.py migrate
+python manage.py seed_palettes   # load the reference palettes + tokens
 python manage.py createsuperuser
 python manage.py runserver
 ```
+
+To seed from the fixture instead of the command: `python manage.py loaddata palettes`.
+
+The database runs in Docker (see `docker-compose.yml`); the app runs locally in the
+venv. Stop the DB with `docker-compose down` (data persists in the `pgdata` volume).
 
 - Front-end shell: http://localhost:8000/
 - Wagtail CMS: http://localhost:8000/admin/
